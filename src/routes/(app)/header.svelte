@@ -4,7 +4,7 @@
 	import { Button } from '$lib/components/ui/button/index.js';
 </script>
 
-<nav class="flex items-center justify-between py-4">
+<nav class="flex items-center justify-between py-4 px-6">
 	<a href="/">
 		<h1 class="font-serif text-2xl font-bold">Chao-Ting Chen</h1>
 	</a>
