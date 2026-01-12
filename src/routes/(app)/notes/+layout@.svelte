@@ -3,7 +3,7 @@
 	import favicon from '$lib/assets/favicon.svg';
 	import { ModeWatcher } from 'mode-watcher';
 	import { Button } from '$lib/components/ui/button/index.js';
-	import { SunIcon, MoonIcon, House } from '@lucide/svelte';
+	import { SunIcon, MoonIcon, House, CodeXml } from '@lucide/svelte';
 	import { toggleMode } from 'mode-watcher';
 
 	let { children } = $props();
@@ -25,6 +25,10 @@
 					<span class="text-sm">Home</span>
 				</a>
 				<a href="/notes" class="font-serif text-xl font-bold">Notes</a>
+				<a href="/work" class="flex items-center gap-2 text-muted-foreground hover:text-foreground">
+					<CodeXml class="h-4 w-4" />
+					<span class="text-sm">Work</span>
+				</a>
 			</div>
 			<Button onclick={toggleMode} variant="ghost" size="icon">
 				<SunIcon

@@ -52,7 +52,10 @@ function parseFrontmatter(content: string) {
 }
 
 export const entries: EntryGenerator = () => {
-	const posts = import.meta.glob('../../../../posts/*.md', { query: '?raw', import: 'default' });
+	const posts = import.meta.glob('../../../../data/notes/*.md', {
+		query: '?raw',
+		import: 'default'
+	});
 
 	return Object.keys(posts).map((path) => {
 		const slug = path.split('/').pop()?.replace('.md', '') || '';
@@ -63,7 +66,7 @@ export const entries: EntryGenerator = () => {
 export const load: PageLoad = async ({ params }) => {
 	try {
 		// Import the markdown file as raw text
-		const postModule = await import(`../../../../posts/${params.slug}.md?raw`);
+		const postModule = await import(`../../../../data/notes/${params.slug}.md?raw`);
 		const rawContent = postModule.default;
 
 		// Parse frontmatter and content

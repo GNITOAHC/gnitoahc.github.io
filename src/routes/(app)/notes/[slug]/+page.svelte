@@ -376,6 +376,14 @@
 		margin: 1.5rem 0;
 		width: 100%;
 		border-collapse: collapse;
+		display: block;
+		overflow-x: auto;
+	}
+
+	:global(.markdown-content tbody),
+	:global(.markdown-content thead) {
+		display: table;
+		width: 100%;
 	}
 
 	:global(.markdown-content thead) {
@@ -483,5 +491,12 @@
 	/* Task lists */
 	:global(.markdown-content input[type='checkbox']) {
 		margin-right: 0.5rem;
+	}
+
+	/* KaTeX adjustments */
+	:global(.markdown-content .katex) {
+		font-size: 1em;
+		overflow-x: scroll;
+		overflow-y: visible;
 	}
 </style>

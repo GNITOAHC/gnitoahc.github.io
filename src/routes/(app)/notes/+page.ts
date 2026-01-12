@@ -55,7 +55,10 @@ function parseFrontmatter(content: string) {
 }
 
 export const load: PageLoad = async () => {
-	const posts = import.meta.glob('../../../posts/*.md', { query: '?raw', import: 'default' });
+	const posts = import.meta.glob('../../../data/notes/*.md', {
+		query: '?raw',
+		import: 'default'
+	});
 
 	const blogPosts: BlogPost[] = await Promise.all(
 		Object.entries(posts).map(async ([path, resolver]) => {
