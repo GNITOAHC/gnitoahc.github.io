@@ -24,7 +24,7 @@
 					<House class="h-4 w-4" />
 					<span class="text-sm">Home</span>
 				</a>
-				<a href="/blog" class="font-serif text-xl font-bold">Blog</a>
+				<a href="/notes" class="font-serif text-xl font-bold">Notes</a>
 			</div>
 			<Button onclick={toggleMode} variant="ghost" size="icon">
 				<SunIcon
@@ -50,9 +50,9 @@
 			<div class="flex items-center gap-4">
 				<a href="/" class="hover:text-foreground">Home</a>
 				<span>•</span>
-				<a href="/blog" class="hover:text-foreground">Blog</a>
+				<a href="/notes" class="hover:text-foreground">Notes</a>
 				<span>•</span>
-				<a href="/projects" class="hover:text-foreground">Projects</a>
+				<a href="/work" class="hover:text-foreground">Work</a>
 			</div>
 		</div>
 	</footer>

@@ -13,7 +13,7 @@
 	<div class="space-y-12">
 		{#each data.posts as post}
 			<article class="group">
-				<a href="/blog/{post.slug}" class="block">
+				<a href="/notes/{post.slug}" class="block">
 					<div class="mb-2 flex items-baseline gap-3">
 						<time class="text-sm text-muted-foreground">
 							{new Date(post.date).toLocaleDateString('en-US', {

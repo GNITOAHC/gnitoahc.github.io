@@ -21,8 +21,8 @@
 				more.
 			</p>
 			<div class="flex flex-wrap justify-center gap-3 md:justify-start">
-				<Button href="/blog" variant="default">Read My Blog</Button>
-				<Button href="/projects" variant="outline">View Projects</Button>
+				<Button href="/notes" variant="default">Read notes</Button>
+				<Button href="/work" variant="outline">View work</Button>
 			</div>
 		</div>
 	</section>

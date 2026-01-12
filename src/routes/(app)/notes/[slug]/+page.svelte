@@ -135,9 +135,9 @@
 		{@render toc()}
 
 		<footer class="mt-12 border-t border-border pt-8">
-			<Button href="/blog" variant="ghost">
+			<Button href="/notes" variant="ghost">
 				<ArrowLeftIcon class="mr-2 h-4 w-4" />
-				Back to all posts
+				Back to all notes
 			</Button>
 		</footer>
 	</article>
