@@ -3,7 +3,6 @@
 	import favicon from '$lib/assets/favicon.svg';
 
 	import { ModeWatcher } from 'mode-watcher';
-	import Header from './header.svelte';
 
 	let { children } = $props();
 </script>
@@ -16,6 +15,5 @@
 <ModeWatcher />
 
 <div class="mx-auto min-h-screen max-w-4xl bg-background text-foreground">
-	<Header />
 	{@render children()}
 </div>

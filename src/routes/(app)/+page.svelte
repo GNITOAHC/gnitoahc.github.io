@@ -45,15 +45,20 @@
 	<section>
 		<h2 class="mb-6 font-serif text-3xl font-bold">Get in Touch</h2>
 		<div class="flex flex-wrap gap-3">
-			<Button variant="outline" size="default">
+			<Button variant="outline" size="default" href="https://github.com/GNITOAHC" target="_blank">
 				<GithubIcon class="mr-2 h-4 w-4" />
 				GitHub
 			</Button>
-			<Button variant="outline" size="default">
+			<Button
+				variant="outline"
+				size="default"
+				href="https://www.linkedin.com/in/chaoting-chen/"
+				target="_blank"
+			>
 				<LinkedinIcon class="mr-2 h-4 w-4" />
 				LinkedIn
 			</Button>
-			<Button variant="outline" size="default">
+			<Button variant="outline" size="default" href="mailto:chaotingchen10@gmail.com">
 				<MailIcon class="mr-2 h-4 w-4" />
 				Email
 			</Button>
