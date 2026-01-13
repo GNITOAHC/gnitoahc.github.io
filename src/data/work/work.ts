@@ -3,7 +3,7 @@ export const projects = [
 		title: 'Codesfer',
 		description:
 			'A CLI tool that helps share code snippets quickly. It ships with optional encryption and self-hosting.',
-		tags: ['Golang', 'CLI', 'SQL'],
+		tags: ['Golang', 'CLI', 'SQL', 'Object Storage'],
 		github: 'https://github.com/GNITOAHC/codesfer',
 		live: 'https://www.codesfer.io'
 	},
