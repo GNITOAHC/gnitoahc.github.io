@@ -3,6 +3,7 @@
 	import { CalendarIcon, ClockIcon, ArrowLeftIcon, ListIcon } from '@lucide/svelte';
 	import type { PageData } from './$types';
 	import { onMount } from 'svelte';
+	import { mode } from 'mode-watcher';
 
 	let { data }: { data: PageData } = $props();
 
@@ -93,6 +94,18 @@
 		integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV"
 		crossorigin="anonymous"
 	/>
+	<!-- highlight.js syntax highlighting -->
+	{#if mode.current === 'dark'}
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github-dark.min.css"
+		/>
+	{:else}
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css"
+		/>
+	{/if}
 </svelte:head>
 
 <div class="px-6 py-12">

@@ -9,6 +9,7 @@ import rehypeKatex from 'rehype-katex';
 import rehypeSlug from 'rehype-slug';
 // @ts-ignore
 import rehypeFigure from '@microflash/rehype-figure';
+import rehypeHighlight from 'rehype-highlight';
 import rehypeStringify from 'rehype-stringify';
 
 export const prerender = true;
@@ -81,6 +82,7 @@ export const load: PageLoad = async ({ params }) => {
 			.use(rehypeKatex)
 			.use(rehypeSlug)
 			.use(rehypeFigure)
+			.use(rehypeHighlight)
 			.use(rehypeStringify);
 
 		const htmlContent = String(await processor.process(content));
