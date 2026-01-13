@@ -8,17 +8,17 @@ export interface Experience {
 
 export const experiences: Experience[] = [
 	{
-		title: 'Research Assistant',
-		organization: 'Academia Sinica',
-		period: 'Jul 2022 - Present',
-		logo: '/logos/academia-sinica.png',
-		type: 'work'
-	},
-	{
 		title: 'Data Center Group Intern',
 		organization: 'Intel Corp.',
 		period: 'Jul 2025 - Present',
 		logo: '/logos/intel.png',
+		type: 'work'
+	},
+	{
+		title: 'Research Assistant',
+		organization: 'Academia Sinica',
+		period: 'Jul 2022 - Present',
+		logo: '/logos/academia-sinica.png',
 		type: 'work'
 	},
 	{
