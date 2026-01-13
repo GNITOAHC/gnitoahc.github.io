@@ -55,7 +55,7 @@ function parseFrontmatter(content: string) {
 }
 
 export const load: PageLoad = async () => {
-	const posts = import.meta.glob('../../../data/notes/*.md', {
+	const posts = import.meta.glob('$data/notes/*.md', {
 		query: '?raw',
 		import: 'default'
 	});

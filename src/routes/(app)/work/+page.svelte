@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { GithubIcon } from '@lucide/svelte';
-	import { projects } from '../../../data/work/work';
+	import { projects } from '$data/work/work.js';
 </script>
 
 <div class="px-6 py-16">

@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { Button } from '$lib/components/ui/button/index.js';
 	import { GithubIcon, LinkedinIcon, MailIcon } from '@lucide/svelte';
+	import { experiences } from '$data/experience/experience.js';
 </script>
 
 <main class="px-6 py-12">
@@ -39,6 +40,36 @@
 				When I'm not coding, you can find me exploring new technologies, contributing to open source
 				projects, or sharing my knowledge through blog posts and technical writing.
 			</p>
+		</div>
+	</section>
+
+	<section class="mb-16">
+		<h2 class="mb-6 font-serif text-3xl font-bold">Experience</h2>
+		<div class="space-y-6">
+			{#each experiences as experience}
+				<div class="flex gap-4">
+					<div class="shrink-0">
+						{#if experience.logo}
+							<img
+								src={experience.logo}
+								alt={experience.organization}
+								class="h-12 w-12 rounded-xl object-contain"
+							/>
+						{:else}
+							<div class="flex h-12 w-12 items-center justify-center rounded-lg bg-muted">
+								<span class="text-xs text-muted-foreground">Logo</span>
+							</div>
+						{/if}
+					</div>
+					<div class="flex-1">
+						<div class="mb-1 flex items-baseline justify-between gap-2">
+							<h3 class="font-semibold">{experience.title}</h3>
+							<span class="text-sm text-muted-foreground">{experience.period}</span>
+						</div>
+						<p class="text-sm text-muted-foreground">{experience.organization}</p>
+					</div>
+				</div>
+			{/each}
 		</div>
 	</section>
 

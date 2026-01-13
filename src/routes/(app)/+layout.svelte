@@ -4,7 +4,7 @@
 	let { children } = $props();
 </script>
 
-<div class="mx-auto min-h-screen max-w-4xl bg-background text-foreground">
+<div class="w-full">
 	<Header />
 	{@render children()}
 </div>
