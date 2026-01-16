@@ -11,46 +11,9 @@ import rehypeSlug from 'rehype-slug';
 import rehypeFigure from '@microflash/rehype-figure';
 import rehypeHighlight from 'rehype-highlight';
 import rehypeStringify from 'rehype-stringify';
+import { parseFrontmatter } from '$lib/notes';
 
 export const prerender = true;
-
-// Function to parse frontmatter from markdown
-function parseFrontmatter(content: string) {
-	const frontmatterRegex = /^---\s*\n([\s\S]*?)\n---\s*\n/;
-	const match = content.match(frontmatterRegex);
-
-	if (!match) {
-		return { metadata: {}, content };
-	}
-
-	const frontmatterText = match[1];
-	const metadata: Record<string, any> = {};
-
-	// Simple YAML parsing for our use case
-	frontmatterText.split('\n').forEach((line) => {
-		const colonIndex = line.indexOf(':');
-		if (colonIndex === -1) return;
-
-		const key = line.slice(0, colonIndex).trim();
-		const value = line.slice(colonIndex + 1).trim();
-
-		// Remove quotes if present
-		const unquotedValue = value.replace(/^['"]|['"]$/g, '');
-
-		// Parse arrays (tags)
-		if (unquotedValue.startsWith('[') && unquotedValue.endsWith(']')) {
-			metadata[key] = unquotedValue
-				.slice(1, -1)
-				.split(',')
-				.map((item) => item.trim().replace(/^['"]|['"]$/g, ''));
-		} else {
-			metadata[key] = unquotedValue;
-		}
-	});
-
-	const markdownContent = content.slice(match[0].length);
-	return { metadata, content: markdownContent };
-}
 
 export const entries: EntryGenerator = () => {
 	const posts = import.meta.glob('$data/notes/*.md', {

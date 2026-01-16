@@ -20,7 +20,10 @@
 </script>
 
 <div class="px-6 py-16">
-	<h1 class="mb-12 font-serif text-2xl">Writing</h1>
+	<div class="mb-12 flex items-baseline justify-between">
+		<h1 class="font-serif text-2xl">Writing</h1>
+		<a href="/notes/archive" class="text-sm text-muted-foreground hover:text-primary">Archive</a>
+	</div>
 
 	{#each years as year}
 		<div class="mb-8">
@@ -48,5 +51,13 @@
 
 	{#if data.posts.length === 0}
 		<p class="text-muted-foreground">No posts yet.</p>
+	{/if}
+
+	{#if data.posts.length > 0}
+		<div class="mt-8 text-center">
+			<a href="/notes/archive" class="text-sm text-muted-foreground hover:text-primary">
+				View all posts in archive
+			</a>
+		</div>
 	{/if}
 </div>
