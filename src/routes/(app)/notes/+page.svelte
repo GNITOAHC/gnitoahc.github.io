@@ -22,7 +22,11 @@
 <div class="px-6 py-16">
 	<div class="mb-12 flex items-baseline justify-between">
 		<h1 class="font-serif text-2xl">Writing</h1>
-		<a href="/notes/archive" class="text-sm text-muted-foreground hover:text-primary">Archive</a>
+		<div class="flex gap-4">
+			<a href="/notes/taxonomy" class="text-sm text-muted-foreground hover:text-primary">Taxonomy</a
+			>
+			<a href="/notes/archive" class="text-sm text-muted-foreground hover:text-primary">Archive</a>
+		</div>
 	</div>
 
 	{#each years as year}
