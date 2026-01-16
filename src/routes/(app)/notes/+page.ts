@@ -6,6 +6,7 @@ export const prerender = true;
 interface BlogPostMetadata {
 	title: string;
 	date: string;
+	type: string;
 	readTime?: string;
 	description?: string;
 	tags?: string[];

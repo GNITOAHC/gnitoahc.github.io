@@ -122,12 +122,12 @@
 						day: 'numeric'
 					})}
 				</span>
-				{#if data.metadata.readTime}
-					<span class="flex items-center gap-1">
-						<ClockIcon class="h-4 w-4" />
-						{data.metadata.readTime}
-					</span>
-				{/if}
+				<!-- {#if data.metadata.readTime} -->
+				<!-- 	<span class="flex items-center gap-1"> -->
+				<!-- 		<ClockIcon class="h-4 w-4" /> -->
+				<!-- 		{data.metadata.readTime} -->
+				<!-- 	</span> -->
+				<!-- {/if} -->
 			</div>
 
 			{#if data.metadata.tags && data.metadata.tags.length > 0}
