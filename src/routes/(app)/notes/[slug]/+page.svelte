@@ -30,7 +30,7 @@
 		// Extract headings from the content
 		const content = document.querySelector('.markdown-content');
 		if (content) {
-			const headings = content.querySelectorAll('h2, h3, h4');
+			const headings = content.querySelectorAll('h1, h2, h3, h4');
 			tocItems = Array.from(headings).map((heading) => ({
 				id: heading.id,
 				text: heading.textContent || '',
@@ -176,7 +176,7 @@
 					<nav>
 						<ul class="space-y-2">
 							{#each tocItems as item}
-								<li style="padding-left: {(item.level - 2) * 0.75}rem">
+								<li style="padding-left: {(item.level - 1) * 0.75}rem">
 									<button
 										onclick={() => scrollToHeading(item.id)}
 										class="w-full text-left text-sm text-muted-foreground transition-colors hover:text-primary"
