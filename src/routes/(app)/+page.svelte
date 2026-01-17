@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Button } from '$lib/components/ui/button/index.js';
-	import { GithubIcon, LinkedinIcon, MailIcon } from '@lucide/svelte';
+	import { GithubIcon, GraduationCapIcon, LinkedinIcon, MailIcon } from '@lucide/svelte';
 	import { experiences } from '$data/experience/experience.js';
 </script>
 
@@ -32,9 +32,9 @@
 		<h2 class="mb-6 font-serif text-3xl font-bold">About Me</h2>
 		<div class="space-y-4 leading-relaxed text-foreground/90">
 			<p>
-				I'm a software engineer with a passion for creating beautiful and functional web
-				applications. My expertise spans across frontend and backend development, with a focus on
-				modern web technologies.
+				I’m a 21-year-old computer science student passionate about technology, programming,
+				innovation, and AI. I’m based in Taipei, Taiwan, where I’m pursuing my degree and exploring
+				the vast world of software development and artificial intelligence.
 			</p>
 			<p>
 				When I'm not coding, you can find me exploring new technologies, contributing to open source
@@ -92,6 +92,15 @@
 			<Button variant="outline" size="default" href="mailto:chaotingchen10@gmail.com">
 				<MailIcon class="mr-2 h-4 w-4" />
 				Email
+			</Button>
+			<Button
+				variant="outline"
+				size="default"
+				href="https://scholar.google.com/citations?user=Iwa-1FgAAAAJ"
+				target="_blank"
+			>
+				<GraduationCapIcon class="mr-2 h-4 w-4" />
+				Google Scholar
 			</Button>
 		</div>
 	</section>
