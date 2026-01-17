@@ -509,7 +509,7 @@
 	/* KaTeX adjustments */
 	:global(.markdown-content .katex) {
 		font-size: 1em;
-		overflow-x: scroll;
-		overflow-y: visible;
+		overflow-x: auto;
+		overflow-y: hidden;
 	}
 </style>

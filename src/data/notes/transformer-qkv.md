@@ -171,14 +171,14 @@ $
 
 **Weight Matrices**
 
-| **Name** | **Shape**                    | **Used In**                | **Description**                                                              |
-| -------- | ---------------------------- | -------------------------- | ---------------------------------------------------------------------------- |
-| $W_E$    | $\mathbb{R}^{V \times d}$    | Embedding layer            | Maps input token IDs to dense vectors (word embeddings).                     |
-| \*$W_Q$  | $\mathbb{R}^{d \times d_q}$  | Self-attention (each head) | Projects hidden state to **Query** vectors.                                  |
-| \*$W_K$  | $\mathbb{R}^{d \times d_k}$  | Self-attention (each head) | Projects hidden state to **Key** vectors.                                    |
-| \*$W_V$  | $\mathbb{R}^{d \times d_v}$  | Self-attention (each head) | Projects hidden state to **Value** vectors.                                  |
-| \*$W_O$  | $\mathbb{R}^{hd_v \times d}$ | Multi-head attention       | Combines concatenated head outputs into a unified vector (often $hd_v = d$). |
-| $W_U$    | $\mathbb{R}^{d \times V}$    | Output layer               | Maps final hidden state to vocabulary logits. Often $W_U = W_E^\top$.        |
+| **Name**  | **Shape**                    | **Used In**                | **Description**                                                              |
+| --------- | ---------------------------- | -------------------------- | ---------------------------------------------------------------------------- |
+| $W_E$     | $\mathbb{R}^{V \times d}$    | Embedding layer            | Maps input token IDs to dense vectors (word embeddings).                     |
+| $^{*}W_Q$ | $\mathbb{R}^{d \times d_q}$  | Self-attention (each head) | Projects hidden state to **Query** vectors.                                  |
+| $^{*}W_K$ | $\mathbb{R}^{d \times d_k}$  | Self-attention (each head) | Projects hidden state to **Key** vectors.                                    |
+| $^{*}W_V$ | $\mathbb{R}^{d \times d_v}$  | Self-attention (each head) | Projects hidden state to **Value** vectors.                                  |
+| $^{*}W_O$ | $\mathbb{R}^{hd_v \times d}$ | Multi-head attention       | Combines concatenated head outputs into a unified vector (often $hd_v = d$). |
+| $W_U$     | $\mathbb{R}^{d \times V}$    | Output layer               | Maps final hidden state to vocabulary logits. Often $W_U = W_E^\top$.        |
 
 通常 $d_q$, $d_v$ 和 $d_k$ 是一樣的，都是 $d_{head}$，也就是說如果 $d_q = d_k = d_v = d_{head} = \frac{d}{h}$ 其中 $h$ 就是 head 的數量。
 
@@ -237,16 +237,16 @@ $Z_{final}$ 就是我們在 single head 中提到的 $Z$ 了。拿著這個 $Z$ 
 
 Feed Forward Layer (FFN) 就是在 Attention 做完之後，讓 $Z$ 在經過幾次 neural network。因為原始的 self-attention layer 其實只是 input 的線性組合，加入 FFN 可以增加整個 Language Model 的深度。
 
-| **Name** | **Shape**                             | **Used In**                | **Description**                                                              |
-| -------- | ------------------------------------- | -------------------------- | ---------------------------------------------------------------------------- |
-| $W_E$    | $\mathbb{R}^{V \times d}$             | Embedding layer            | Maps input token IDs to dense vectors (word embeddings).                     |
-| $W_Q$    | $\mathbb{R}^{d \times d_q}$           | Self-attention (each head) | Projects hidden state to **Query** vectors.                                  |
-| $W_K$    | $\mathbb{R}^{d \times d_k}$           | Self-attention (each head) | Projects hidden state to **Key** vectors.                                    |
-| $W_V$    | $\mathbb{R}^{d \times d_v}$           | Self-attention (each head) | Projects hidden state to **Value** vectors.                                  |
-| $W_O$    | $\mathbb{R}^{hd_v \times d}$          | Multi-head attention       | Combines concatenated head outputs into a unified vector (often $hd_v = d$). |
-| \*$W_1$  | $\mathbb{R}^{d \times d_{\text{ff}}}$ | Feedforward layer          | First linear layer in the MLP (expands dimensionality).                      |
-| \*$W_2$  | $\mathbb{R}^{d_{\text{ff}} \times d}$ | Feedforward layer          | Second linear layer in the MLP (compresses back to $d$).                     |
-| $W_U$    | $\mathbb{R}^{d \times V}$             | Output layer               | Maps final hidden state to vocabulary logits. Often $W_U = W_E^\top$.        |
+| **Name**  | **Shape**                             | **Used In**                | **Description**                                                              |
+| --------- | ------------------------------------- | -------------------------- | ---------------------------------------------------------------------------- |
+| $W_E$     | $\mathbb{R}^{V \times d}$             | Embedding layer            | Maps input token IDs to dense vectors (word embeddings).                     |
+| $W_Q$     | $\mathbb{R}^{d \times d_q}$           | Self-attention (each head) | Projects hidden state to **Query** vectors.                                  |
+| $W_K$     | $\mathbb{R}^{d \times d_k}$           | Self-attention (each head) | Projects hidden state to **Key** vectors.                                    |
+| $W_V$     | $\mathbb{R}^{d \times d_v}$           | Self-attention (each head) | Projects hidden state to **Value** vectors.                                  |
+| $W_O$     | $\mathbb{R}^{hd_v \times d}$          | Multi-head attention       | Combines concatenated head outputs into a unified vector (often $hd_v = d$). |
+| $^{*}W_1$ | $\mathbb{R}^{d \times d_{\text{ff}}}$ | Feedforward layer          | First linear layer in the MLP (expands dimensionality).                      |
+| $^{*}W_2$ | $\mathbb{R}^{d_{\text{ff}} \times d}$ | Feedforward layer          | Second linear layer in the MLP (compresses back to $d$).                     |
+| $W_U$     | $\mathbb{R}^{d \times V}$             | Output layer               | Maps final hidden state to vocabulary logits. Often $W_U = W_E^\top$.        |
 
 FFN 會被 appied 在 self-attention 之後：
 
