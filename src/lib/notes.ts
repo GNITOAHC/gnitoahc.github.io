@@ -3,6 +3,7 @@ export interface BlogPostMetadata {
 	title: string;
 	date: string;
 	type: string;
+	pin?: boolean;
 	readTime?: string;
 	description?: string;
 	tags?: string[];
@@ -42,6 +43,9 @@ export function parseFrontmatter(content: string) {
 				.slice(1, -1)
 				.split(',')
 				.map((item) => item.trim().replace(/^['"]|['"]$/g, ''));
+		} else if (unquotedValue === 'true' || unquotedValue === 'false') {
+			// Parse booleans
+			metadata[key] = unquotedValue === 'true';
 		} else {
 			metadata[key] = unquotedValue;
 		}
@@ -71,8 +75,12 @@ export async function loadBlogPosts(): Promise<BlogPost[]> {
 		})
 	);
 
-	// Sort by date, newest first
-	blogPosts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+	// Sort: pinned first, then by date (newest first)
+	blogPosts.sort((a, b) => {
+		if (a.pin && !b.pin) return -1;
+		if (!a.pin && b.pin) return 1;
+		return new Date(b.date).getTime() - new Date(a.date).getTime();
+	});
 
 	return blogPosts;
 }
