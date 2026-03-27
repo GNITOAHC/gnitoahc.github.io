@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Button } from '$lib/components/ui/button/index.js';
 	import { GithubIcon, GraduationCapIcon, LinkedinIcon, MailIcon } from '@lucide/svelte';
-	import { experiences } from '$data/experience/experience.js';
+	import { experiences, educations } from '$data/experience/experience.js';
 </script>
 
 <main class="px-6 py-12">
@@ -49,17 +49,11 @@
 			{#each experiences as experience}
 				<div class="flex gap-4">
 					<div class="shrink-0">
-						{#if experience.logo}
-							<img
-								src={experience.logo}
-								alt={experience.organization}
-								class="h-12 w-12 rounded-xl object-contain"
-							/>
-						{:else}
-							<div class="flex h-12 w-12 items-center justify-center rounded-lg bg-muted">
-								<span class="text-xs text-muted-foreground">Logo</span>
-							</div>
-						{/if}
+						<img
+							src={experience.logo}
+							alt={experience.organization}
+							class="h-12 w-12 rounded-xl object-contain"
+						/>
 					</div>
 					<div class="flex-1">
 						<div class="mb-1 flex items-baseline justify-between gap-2">
@@ -67,6 +61,30 @@
 							<span class="text-sm text-muted-foreground">{experience.period}</span>
 						</div>
 						<p class="text-sm text-muted-foreground">{experience.organization}</p>
+					</div>
+				</div>
+			{/each}
+		</div>
+	</section>
+
+	<section class="mb-16">
+		<h2 class="mb-6 font-serif text-3xl font-bold">Education</h2>
+		<div class="space-y-6">
+			{#each educations as education}
+				<div class="flex gap-4">
+					<div class="shrink-0">
+						<img
+							src={education.logo}
+							alt={education.organization}
+							class="h-12 w-12 rounded-xl object-contain"
+						/>
+					</div>
+					<div class="flex-1">
+						<div class="mb-1 flex items-baseline justify-between gap-2">
+							<h3 class="font-semibold">{education.title}</h3>
+							<span class="text-sm text-muted-foreground">{education.period}</span>
+						</div>
+						<p class="text-sm text-muted-foreground">{education.organization}</p>
 					</div>
 				</div>
 			{/each}
