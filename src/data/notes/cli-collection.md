@@ -3,7 +3,7 @@ title: My awesome-cli collection
 date: 2026-01-22
 description: My CLI collection
 tags: ['Command Line']
-type: notes
+type: note
 pin: true
 ---
 
