@@ -32,3 +32,9 @@ pin: true
 # MacOS Specific
 
 - [caffeinate](https://ss64.com/mac/caffeinate.html): Prevent MacOS from sleeping.
+- [mole](https://github.com/tw93/Mole): Deep clean and optimize your Mac.
+
+---
+
+Last updated: 2026-04-05\
+Initial edit: 2026-01-22
