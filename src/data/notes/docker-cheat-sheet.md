@@ -24,7 +24,6 @@ source: [cto.ai](https://cto.ai/blog/docker-image-vs-container-vs-dockerfile/)
 - `docker --version` - Show the Docker version information
 - `docker info` - Display system-wide information
 - `docker --help` - Show help
-- `docker system df` - Show Docker disk usage
 
 ## Images
 
@@ -76,3 +75,21 @@ source: [cto.ai](https://cto.ai/blog/docker-image-vs-container-vs-dockerfile/)
   - `-it` flags are used to open an interactive terminal
   - `bash` is the command to execute
   - _e.g._: `docker exec -it <container_id> bash`
+
+## Volumes
+
+- `docker volume create <volume_name>` - Create a volume
+- `docker volume ls` - List all volumes
+- `docker volume rm <volume_name>` - Remove a volume
+
+> To `docker run` with a volume, use `docker run -v <volume_name>:<container_path> <image_name>`
+
+## Disk Usage
+
+- `docker system df` - Show Docker disk usage
+  - `docker system df -v` - Show Docker disk usage in verbose mode
+
+---
+
+Last updated: 2026-05-27\
+Initial edit: 2024-09-16
