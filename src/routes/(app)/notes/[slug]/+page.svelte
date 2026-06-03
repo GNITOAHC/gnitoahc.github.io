@@ -36,6 +36,17 @@
 				text: heading.textContent || '',
 				level: parseInt(heading.tagName[1])
 			}));
+
+			// Wrap tables in a scrollable div so thead/tbody stay as native table display,
+			// keeping header columns aligned with body columns.
+			content.querySelectorAll('table').forEach((table) => {
+				const wrapper = document.createElement('div');
+				wrapper.style.overflowX = 'auto';
+				wrapper.style.margin = '1.5rem 0';
+				table.parentNode!.insertBefore(wrapper, table);
+				wrapper.appendChild(table);
+				(table as HTMLElement).style.margin = '0';
+			});
 		}
 
 		return () => {
@@ -386,17 +397,8 @@
 
 	/* Tables */
 	:global(.markdown-content table) {
-		margin: 1.5rem 0;
 		width: 100%;
 		border-collapse: collapse;
-		display: block;
-		overflow-x: auto;
-	}
-
-	:global(.markdown-content tbody),
-	:global(.markdown-content thead) {
-		display: table;
-		width: 100%;
 	}
 
 	:global(.markdown-content thead) {
