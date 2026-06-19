@@ -171,21 +171,18 @@ This will call the `middlewareOne` first, then `middlewareTwo`, and finally the 
 On the other hand, if you want to use the middleware for all routes, you can create a wrapper function that takes the main handler and returns a new handler with the middleware applied.
 
 ```go
-func WrapAll(r *http.ServeMux, middlewares ...func(next http.Handler) http.Handler) http.Handler {
-	var s http.Handler
-	s = r
-
-	for i := len(middlewares) - 1; i >= 0; i-- {
-        s = middlewares[i](s)
+func Chain(handler http.Handler, middlewares ...func(next http.Handler) http.Handler) http.Handler {
+  for i := len(middlewares) - 1; i >= 0; i-- {
+	  handler = middlewares[i](handler)
 	}
 
-	return s
+	return handler
 }
 func Routes() http.Handler {
     mux := http.NewServeMux()
     mux.HandleFunc("/one", one) // Return: [middlewareOne] [middlewareTwo] [one] Hello, World!
     mux.HandleFunc("/two", two) // Return: [middlewareOne] [middlewareTwo] [two] Hello, World!
-    return WrapAll(mux, middlewareOne, middlewareTwo)
+    return Chain(mux, middlewareOne, middlewareTwo)
 }
 ```
 
