@@ -19,6 +19,84 @@ gcc -c geometry.c -o geometry.o
 
 (Windows calls these `.obj` files. Same idea.)
 
+# Compile vs. Link: What `gcc -c` Actually Means
+
+The `-c` flag means **compile only**:
+
+```bash
+gcc -c main.c -o main.o
+```
+
+GCC checks the code, expands includes, turns the source into machine code, and writes an object file — but it does **not** build a runnable program. That happens at the **linking step**:
+
+```bash
+gcc main.o geometry.o -o my_program
+```
+
+You still run `gcc`, but now it drives the linker, which combines object files and libraries, resolves symbols, and produces the executable.
+
+You can also compile and link in one command by passing source files without `-c`:
+
+```bash
+gcc main.c geometry.c -o my_program
+```
+
+GCC just compiles the `.c` files and links the results under the hood. For learning object files, though, it helps to split the steps:
+
+```bash
+gcc -c main.c -o main.o
+gcc -c geometry.c -o geometry.o
+gcc main.o geometry.o -o my_program
+```
+
+# Header Files and `-I`
+
+Object files and libraries contain compiled code; header files do not. Headers are read during **compilation** so the compiler can see declarations, types, macros, prototypes, structs, and constants.
+
+```c
+#include "geometry.h"
+
+int main(void) {
+    return area_of_square(4);
+}
+```
+
+When compiling `main.c`, the compiler must find `geometry.h`, or compilation fails before linking even starts. There are two include forms, with slightly different search rules:
+
+- `#include "file.h"` usually searches near the source file first, then the configured include paths.
+- `#include <file.h>` searches system include paths and paths given with `-I`.
+
+If the header sits in the same directory as the source, you usually don't need `-I`:
+
+```text
+project/
+  main.c
+  geometry.h
+```
+
+```bash
+gcc -c main.c -o main.o
+```
+
+If it lives elsewhere, either include it by relative path (`#include "../include/geometry.h"`) or add a search path and keep the include clean:
+
+```bash
+gcc -I../include -c main.c -o main.o
+```
+
+So `-I` means: **when compiling, also search this directory for headers**. This is separate from linking — `-L` and `-l` don't help the compiler find headers:
+
+```bash
+gcc -I/path/to/headers -c main.c -o main.o
+gcc main.o -L/path/to/libs -lmath -o my_program
+```
+
+- `-I/path/to/headers` — compile time.
+- `-L/path/to/libs` — link time.
+- `-lmath` — link against `libmath.a` or `libmath.so`.
+
+That's why a new library often needs two things: its header path when compiling, and its library path when linking.
+
 # .a Files (Archive / Static Library)
 
 A `.a` file is a static library — "archive" is what the 'a' stands for, in case you were wondering. It's a collection of `.o` files bundled together using the `ar` tool. Instead of juggling a dozen individual object files when distributing reusable code, you wrap them all up into one neat package.
@@ -69,7 +147,8 @@ gcc -c algebra.c -o algebra.o
 ar rcs libmath.a geometry.o algebra.o
 
 # 3. Final linking step to create an executable
-# the -L. means to look in the current directory for libraries
+# -L. means to look in the current directory for libraries
+# -lmath means to link libmath.a, or libmath.so if the shared version is chosen
 gcc main.o -L. -lmath -o my_program
 ```
 
