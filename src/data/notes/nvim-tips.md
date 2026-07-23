@@ -34,8 +34,9 @@ which_key.add({
 - **List buffers:** `:buffers`, use `:b<number>` to switch to target buffer and `:bd<number>` to delete target buffer.
 - **Managing pane:** `:vs` or `:sp` to split. `<C-w>H, <C-w>J, <C-w>K, <C-w>L` to move pane.
 - **Number increment/decrement:** Increase/Decrease highlighted number by one: `<C-a>`/`<C-x>`. Increase/Decrease visual blocked number sequentially: `g<C-a>`/`g<C-x>`.
+- **Delete/Cut characters:** `ctx` cut forward up to next `x`; `cfx` cut forward through next `x`. Use `d` instead of `c` to delete. Use `T` or `F` to go backward.
 
 ---
 
-Last updated: 2026-05-27\
+Last updated: 2026-07-22\
 Initial edit: 2026-03-28
