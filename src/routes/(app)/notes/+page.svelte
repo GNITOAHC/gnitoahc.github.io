@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { PageData } from './$types';
 	import { PinIcon } from '@lucide/svelte';
+	import Seo from '$lib/components/seo.svelte';
 
 	let { data }: { data: PageData } = $props();
 
@@ -24,13 +25,18 @@
 	const years = $derived(Object.keys(postsByYear).sort((a, b) => Number(b) - Number(a)));
 </script>
 
+<Seo
+	title="Notes - Chao-Ting Chen"
+	description="Notes and write-ups on software engineering: Linux and systems internals, C/C++, Go, networking, containers, and machine learning."
+/>
+
 <div class="px-6 py-16">
 	<div class="mb-12 flex items-baseline justify-between">
 		<h1 class="font-serif text-2xl">Writing</h1>
 		<div class="flex gap-4">
-			<a href="/notes/taxonomy" class="text-sm text-muted-foreground hover:text-primary">Taxonomy</a
+			<a href="/notes/taxonomy/" class="text-sm text-muted-foreground hover:text-primary">Taxonomy</a
 			>
-			<a href="/notes/archive" class="text-sm text-muted-foreground hover:text-primary">Archive</a>
+			<a href="/notes/archive/" class="text-sm text-muted-foreground hover:text-primary">Archive</a>
 		</div>
 	</div>
 
@@ -42,7 +48,7 @@
 			</h2>
 			<div class="space-y-4">
 				{#each pinnedPosts as post}
-					<a href="/notes/{post.slug}" class="group block">
+					<a href="/notes/{post.slug}/" class="group block">
 						<div class="flex items-baseline gap-2">
 							<span class="font-serif group-hover:text-primary">{post.title}</span>
 							<span class="text-muted-foreground">·</span>
@@ -67,7 +73,7 @@
 			<h2 class="mb-4 text-sm text-muted-foreground">{year}</h2>
 			<div class="space-y-4">
 				{#each postsByYear[Number(year)] as post}
-					<a href="/notes/{post.slug}" class="group block">
+					<a href="/notes/{post.slug}/" class="group block">
 						<div class="flex items-baseline gap-2">
 							<span class="font-serif group-hover:text-primary">{post.title}</span>
 							<span class="text-muted-foreground">·</span>
@@ -92,7 +98,7 @@
 
 	{#if data.posts.length > 0}
 		<div class="mt-8 text-center">
-			<a href="/notes/archive" class="text-sm text-muted-foreground hover:text-primary">
+			<a href="/notes/archive/" class="text-sm text-muted-foreground hover:text-primary">
 				View all posts in archive
 			</a>
 		</div>

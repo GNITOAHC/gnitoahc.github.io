@@ -1,7 +1,13 @@
 <script lang="ts">
 	import { GithubIcon } from '@lucide/svelte';
 	import { projects } from '$data/work/work.js';
+	import Seo from '$lib/components/seo.svelte';
 </script>
+
+<Seo
+	title="Work - Chao-Ting Chen"
+	description="Selected projects and experiments by Chao-Ting Chen, spanning systems programming, web development, and developer tooling."
+/>
 
 <div class="px-6 py-16">
 	<div class="mb-16">

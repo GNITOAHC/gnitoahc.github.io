@@ -4,8 +4,27 @@
 	import type { PageData } from './$types';
 	import { onMount } from 'svelte';
 	import { mode } from 'mode-watcher';
+	import Seo from '$lib/components/seo.svelte';
+	import { page } from '$app/state';
+	import { SITE, AUTHOR, SITE_DESCRIPTION } from '$lib/site.js';
+	import 'katex/dist/katex.min.css';
+	import hljsLight from 'highlight.js/styles/github.css?url';
+	import hljsDark from 'highlight.js/styles/github-dark.css?url';
 
 	let { data }: { data: PageData } = $props();
+
+	const jsonld = $derived({
+		'@context': 'https://schema.org',
+		'@type': 'BlogPosting',
+		headline: data.metadata.title,
+		description: data.metadata.description ?? SITE_DESCRIPTION,
+		datePublished: data.metadata.date,
+		inLanguage: 'en',
+		mainEntityOfPage: SITE + page.url.pathname,
+		keywords: data.metadata.tags,
+		author: { '@type': 'Person', name: AUTHOR, url: `${SITE}/` },
+		publisher: { '@type': 'Person', name: AUTHOR, url: `${SITE}/` }
+	});
 
 	interface TocItem {
 		id: string;
@@ -93,29 +112,19 @@
 	}
 </script>
 
+<Seo
+	title="{data.metadata.title} - Chao-Ting Chen"
+	description={data.metadata.description ?? SITE_DESCRIPTION}
+	type="article"
+	{jsonld}
+/>
+
 <svelte:head>
-	<title>{data.metadata.title} - Chao-Ting Chen</title>
-	{#if data.metadata.description}
-		<meta name="description" content={data.metadata.description} />
-	{/if}
-	<!-- rehype-katex -->
-	<link
-		rel="stylesheet"
-		href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"
-		integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV"
-		crossorigin="anonymous"
-	/>
-	<!-- highlight.js syntax highlighting -->
+	<!-- highlight.js syntax highlighting, self-hosted and hashed by Vite -->
 	{#if mode.current === 'dark'}
-		<link
-			rel="stylesheet"
-			href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github-dark.min.css"
-		/>
+		<link rel="stylesheet" href={hljsDark} />
 	{:else}
-		<link
-			rel="stylesheet"
-			href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css"
-		/>
+		<link rel="stylesheet" href={hljsLight} />
 	{/if}
 </svelte:head>
 
@@ -159,7 +168,7 @@
 		{@render toc()}
 
 		<footer class="mt-12 border-t border-border pt-8">
-			<Button href="/notes" variant="ghost">
+			<Button href="/notes/" variant="ghost">
 				<ArrowLeftIcon class="mr-2 h-4 w-4" />
 				Back to all notes
 			</Button>

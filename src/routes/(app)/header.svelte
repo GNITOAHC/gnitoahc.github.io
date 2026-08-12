@@ -9,8 +9,8 @@
 		<h1 class="font-serif text-2xl font-bold">Chao-Ting Chen</h1>
 	</a>
 	<div class="flex items-center gap-4">
-		<a class="font-serif" href="/notes">Notes</a>
-		<a class="font-serif" href="/work">Work</a>
+		<a class="font-serif" href="/notes/">Notes</a>
+		<a class="font-serif" href="/work/">Work</a>
 		{@render modeToggler()}
 	</div>
 </nav>

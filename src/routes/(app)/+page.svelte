@@ -2,7 +2,39 @@
 	import { Button } from '$lib/components/ui/button/index.js';
 	import { GithubIcon, GraduationCapIcon, LinkedinIcon, MailIcon } from '@lucide/svelte';
 	import { experiences, educations } from '$data/experience/experience.js';
+	import Seo from '$lib/components/seo.svelte';
+	import { SITE, AUTHOR, SITE_TITLE, SITE_DESCRIPTION } from '$lib/site.js';
+
+	const jsonld = {
+		'@context': 'https://schema.org',
+		'@graph': [
+			{
+				'@type': 'Person',
+				'@id': `${SITE}/#person`,
+				name: AUTHOR,
+				url: `${SITE}/`,
+				image: `${SITE}/me.jpg`,
+				jobTitle: 'Software Engineer',
+				sameAs: [
+					'https://github.com/GNITOAHC',
+					'https://www.linkedin.com/in/chaoting-chen/',
+					'https://scholar.google.com/citations?user=Iwa-1FgAAAAJ'
+				]
+			},
+			{
+				'@type': 'WebSite',
+				'@id': `${SITE}/#website`,
+				url: `${SITE}/`,
+				name: AUTHOR,
+				description: SITE_DESCRIPTION,
+				inLanguage: 'en',
+				author: { '@id': `${SITE}/#person` }
+			}
+		]
+	};
 </script>
+
+<Seo title={SITE_TITLE} description={SITE_DESCRIPTION} {jsonld} />
 
 <main class="px-6 py-12">
 	<section class="mb-16 flex flex-col items-center gap-8 md:flex-row md:items-start">
@@ -14,7 +46,7 @@
 			/>
 		</div>
 		<div class="flex-1 text-center md:text-left">
-			<h1 class="mb-4 font-serif text-4xl font-bold">Hi, I'm Chao-Ting Chen</h1>
+			<h1 class="mb-4 font-serif text-4xl font-bold">Hi, I'm Chao-Ting (Tim) Chen</h1>
 			<p class="mb-6 text-xl text-muted-foreground">Software Engineer & Developer</p>
 			<p class="mb-6 leading-relaxed text-foreground/90">
 				Welcome to my personal website. I'm passionate about building elegant solutions to complex
@@ -22,8 +54,8 @@
 				more.
 			</p>
 			<div class="flex flex-wrap justify-center gap-3 md:justify-start">
-				<Button href="/notes" variant="default">Read notes</Button>
-				<Button href="/work" variant="outline">View work</Button>
+				<Button href="/notes/" variant="default">Read notes</Button>
+				<Button href="/work/" variant="outline">View work</Button>
 			</div>
 		</div>
 	</section>

@@ -24,8 +24,8 @@
 					<House class="h-4 w-4" />
 					<span class="text-sm">Home</span>
 				</a>
-				<a href="/notes" class="font-serif text-xl font-bold">Notes</a>
-				<a href="/work" class="flex items-center gap-2 text-muted-foreground hover:text-foreground">
+				<a href="/notes/" class="font-serif text-xl font-bold">Notes</a>
+				<a href="/work/" class="flex items-center gap-2 text-muted-foreground hover:text-foreground">
 					<CodeXml class="h-4 w-4" />
 					<span class="text-sm">Work</span>
 				</a>
@@ -54,9 +54,9 @@
 			<div class="flex items-center gap-4">
 				<a href="/" class="hover:text-foreground">Home</a>
 				<span>•</span>
-				<a href="/notes" class="hover:text-foreground">Notes</a>
+				<a href="/notes/" class="hover:text-foreground">Notes</a>
 				<span>•</span>
-				<a href="/work" class="hover:text-foreground">Work</a>
+				<a href="/work/" class="hover:text-foreground">Work</a>
 			</div>
 		</div>
 	</footer>

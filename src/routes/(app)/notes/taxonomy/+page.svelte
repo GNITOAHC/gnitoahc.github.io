@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { PageData } from './$types';
+	import Seo from '$lib/components/seo.svelte';
 
 	let { data }: { data: PageData } = $props();
 
@@ -10,10 +11,15 @@
 	}
 </script>
 
+<Seo
+	title="Taxonomy - Chao-Ting Chen"
+	description="Every note by Chao-Ting Chen, grouped by tag and topic."
+/>
+
 <div class="px-6 py-16">
 	<div class="mb-12 flex items-baseline justify-between">
 		<h1 class="font-serif text-2xl">Taxonomy</h1>
-		<a href="/notes" class="text-sm text-muted-foreground hover:text-primary">Back</a>
+		<a href="/notes/" class="text-sm text-muted-foreground hover:text-primary">Back</a>
 	</div>
 
 	<div class="space-y-4">
@@ -33,7 +39,7 @@
 				{#if openTags[tag]}
 					<div class="mt-3 ml-5 space-y-3">
 						{#each data.postsByTag[tag] as post}
-							<a href="/notes/{post.slug}" class="group block">
+							<a href="/notes/{post.slug}/" class="group block">
 								<div class="flex items-baseline gap-2">
 									<span class="group-hover:text-primary">{post.title}</span>
 									<span class="text-muted-foreground">·</span>
