@@ -54,6 +54,8 @@ source: [cto.ai](https://cto.ai/blog/docker-image-vs-container-vs-dockerfile/)
 
 - `docker run --name <container_name> <image_name>` - Create and run a container
 - `docker run -p <host_port>:<container_port> <image_name>` - Map a host port to a container port
+- `docker run --network host <image_name>` - Run a container directly in host network mode
+  - The default is `--network bridge` so when port exposing, `-p` is needed. `--network host` share the host's network stack, so no `-p` needed.
 - `docker run -d <image_name>` - Run a container in detached mode (background)
 
 > `<image_name>` should always be the last argument in the command.
@@ -71,7 +73,7 @@ source: [cto.ai](https://cto.ai/blog/docker-image-vs-container-vs-dockerfile/)
 - `docker container prune` - Remove all stopped containers
 - `docker container stats` - Display a live stream of container(s) resource usage statistics
 - `docker logs <container_id>` - Fetch the logs of a container
-- `docker exec -it <container_id> CONTAINER COMMANDS` - Execute a command in a running container
+- `docker exec -it <container_id> COMMANDS` - Execute a command in a running container
   - `-it` flags are used to open an interactive terminal
   - `bash` is the command to execute
   - _e.g._: `docker exec -it <container_id> bash`
@@ -84,6 +86,15 @@ source: [cto.ai](https://cto.ai/blog/docker-image-vs-container-vs-dockerfile/)
 
 > To `docker run` with a volume, use `docker run -v <volume_name>:<container_path> <image_name>`
 
+### Bind Mount
+
+- `docker run -v <host_path>:<container_path> <image_name>` - Mount a host path to a container path
+
+> _e.g._ `docker run -d -v $PWD/bind-mount-vol:/work alpine sleep infintity` \
+> Note: For now `$PWD/bind-mount-vol` will be owned by the root user inside that container.
+> To delete a bind mount volume, try `sudo rm -rf` or use an ephemeral container
+> `docker run --rm -v "$PWD:/work" alpine rm -rf /work/bind-mount-vol`
+
 ## Disk Usage
 
 - `docker system df` - Show Docker disk usage
@@ -91,5 +102,5 @@ source: [cto.ai](https://cto.ai/blog/docker-image-vs-container-vs-dockerfile/)
 
 ---
 
-Last updated: 2026-05-27\
+Last updated: 2026-08-14\
 Initial edit: 2024-09-16
